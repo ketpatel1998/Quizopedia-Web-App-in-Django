@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+	</head>
+    <body style="counter-reset: mega-step, mini-step;background-color:gray">
+      <div style="height:auto; width:60%;background-color:white; display:inline-block;margin-top:40px;margin-left:20%;margin-bottom:40px">
+        <nav style="margin-top:0px; height:60px; width: 100%;  background-color: rgb(20, 206, 219); display:flex">
+            <ul>
+                <div style="width:100px;margin-left:-20px;display:inline-block">
+                <li style="display:inline;"><a style="font-size:25px;color:black;" href="/QuizoPedia/Quiz">AttemptQuiz</a></li>
+                </div>
+                <div style="width:100px;height:60px;margin-left:60px;display:inline-block">
+                <li style="display:inline;"><a style="font-size:25px; color:black" href="/QuizoPedia/QuizHistory">QuizHistory</a></li>
+                </div>
+                <div style="width:100px;height:60px;margin-left:320px; display:inline-block">
+                <li style="display:inline;" ><a style="justify-content:right;display:flex;font-size:20px;color:black" href="/QuizoPedia/logout">Logout</a></li>
+                </div>
+            </ul>
+        </nav>
+		<div id='container'>
+        <div style="display:flex;justify-content:center;margin-bottom:25px;text-decoration:underline" id='title'>
+            <h1>Quiz Attempt</h1>
+        </div>
+            <div style="display:flex;justify-content:center;margin-bottom:25px">
+        <table border="1">
+            <tr>
+                <th style="padding:5px" >Attempt Number</th>
+                <th style="padding:5px" >Date</th>
+                <th style="padding:5px" >Score</th>
+                <th style="padding:5px" >Percentage</th>
+            </tr>
+
+   		{% for quiz in quizHistory %}
+            <tr>
+                <td style="padding:5px" >{{ quiz.indexOfAttempt }}</td>
+                <td style="padding:5px" >{{ quiz.dateOnWhichAttempted }}</td>
+                <td style="padding:5px" >{{ quiz.userGainedGrades }}</td>
+                <td style="padding:5px" >{{ quiz.percentageScore }}</td>
+            </tr>
+   		{% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Average Score </td>
+                <td>{{ averageScore }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Maximum Score </td>
+                <td>{{ MaximumScore }}</td>
+            </tr>
+         <tr>
+                <td></td>
+                <td></td>
+                <td>Minimum Score </td>
+                <td>{{ MinimumScore }}</td>
+            </tr>
+        </table>
+		</div>
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+		<script type="text/javascript" src='questions.json'></script>
+		<script type='text/javascript' src='jsquiz.js'></script>
+
+    </body>
+</html>
+
+{#<script>#}
+{#    (function() {#}
+{#  var questions = [{#}
+{#    question: "Django was created in the fall of",#}
+{#    choices: [2000, 2001, 2002, 2003],#}
+{#    correctAnswer: 2003#}
+{#  }, {#}
+{#    question: "Which architectural pattern does django follow?",#}
+{#    choices: ['PHP','MVT','CSS','HTML'],#}
+{#    correctAnswer: 'MVT'#}
+{#  }, {#}
+{#    question: "Which of the following is the Django shortcut method to more easily render an html response?",#}
+{#    choices: ['render', 'render_to_response', 'render_to_html', 'response_render'],#}
+{#    correctAnswer: 'render_to_response'#}
+{#  }, {#}
+{#    question: "Django is a ___ Python web framework.",#}
+{#    choices: ['high-level', 'mid-level', 'low-level', 'None of the above'],#}
+{#    correctAnswer: 'high-level'#}
+{#  }, {#}
+{#    question: "Django is a type of",#}
+{#    choices: ['Tool','Software','Web-framework','Programming-Language',''],#}
+{#    correctAnswer:'Web-framework'#}
+{#  },{#}
+{#    question: "Django was initially released in_____",#}
+{#    choices: ['21 July 2003','21 July 2004','21 July 2005','21 July 2006'],#}
+{#    correctAnswer:'21 July 2005'#}
+{#  },#}
+{#  {#}
+{#    question: "What are the features available in Django web framework?",#}
+{#        choices: ['Form handling','Templating','Admin Interface (CRUD)','All of the above'],#}
+{#        correctAnswer:'All of the above'#}
+{#  },#}
+{#  {#}
+{#    question: "Django supports the ___________ pattern.",#}
+{#    choices: ['MVC','MVI','MVP','MVZ'],#}
+{#    correctAnswer:'MVC'#}
+{#  },#}
+{#  {#}
+{#    question: "MVC pattern is based on _______ components.",#}
+{#    choices: ['1','2','3','4',],#}
+{#    correctAnswer:'3'#}
+{#  },#}
+{#  {#}
+{#    question: "MVT Stands for?",#}
+{#    choices: ['Model-View-Table','Model-View-Template','Map-View-Template','Main-View-Template'],#}
+{#    correctAnswer:'Model-View-Template'#}
+{#  },#}
+{#  {#}
+{#    question: "Which commands use to create a project in Django?",#}
+{#    choices: ['$ django startproject project_name','$ django-admin startproject project_name','$ django createproject project_name','$ django-admin createproject project_name'],#}
+{#    correctAnswer:'$ django-admin startproject project_name'#}
+{#  },#}
+{#  {#}
+{#    question: "View response can be the ?",#}
+{#    choices: ['404 error','XML document','HTML contents','All of the above'],#}
+{#    correctAnswer:'All of the above'#}
+{#  },#}
+{#  {#}
+{#    question: "Which file is kind of your project local django-admin for interacting with your project via command line?",#}
+{#    choices: ['admin.py','manage.py','models.py','settings.py'],#}
+{#    correctAnswer:'manage.py'#}
+{#  },#}
+{#  {#}
+{#    question: "Which of the following is used If you need to deploy your project over WSGI?",#}
+{#    choices: ['wsgi.py','urls.py','settings.py','__init__.py'],#}
+{#    correctAnswer:'wsgi.py'#}
+{#  },#}
+{#  ,#}
+{#  {#}
+{#    question: "What is the most easiest, fastest, and most stable deployment choice in most cases with Django?",#}
+{#    choices: ['AJP','mod_wsgi','SCGI','FastCGI'],#}
+{#    correctAnswer:'mod_wsgi'#}
+{##}
+{#  },#}
+{#  {#}
+{#    question: "Which of these variables are the settings for django.contib.staticfiles app?",#}
+{#    choices: ['STATIC_URL','STATIC_ROOT','STATICFILES_DIRS','All of the above'],#}
+{#    correctAnswer:'All of the above'#}
+{##}
+{#  },#}
+{#  {#}
+{#    question: "Which filter will truncate the string, so you will see only the first 80 words?",#}
+{#    choices: ['{{string|truncatewords:80}}','{{string|truncate}}','{{string|truncate}}','{{string|truncatewords}}'],#}
+{#    correctAnswer:'{{string|truncatewords:80}}'#}
+{##}
+{#  },#}
+{#  {#}
+{#    question: "A variable in django looks like this : ______.",#}
+{#    choices: ['[{variable}]','{{variable}}','[[variable]]','((variable))'],#}
+{#    correctAnswer:'{{variable}}'#}
+{##}
+{#  },#}
+{#  {#}
+{#    question: "What are the caching strategies in Django?",#}
+{#    choices: ['In-memory caching','File sytem caching','Both (A) and (B)','None of the above'],#}
+{#    correctAnswer:'Both (A) and (B)'#}
+{##}
+{#  },#}
+{#  {#}
+{#    question: "In Django how would you retrieve all the 'User' records from a given database?",#}
+{#    choices: ['User.object.all()','User.all_records()','Users.objects.all()','User.objects.all()'],#}
+{#    correctAnswer:'User.objects.all()'#}
+{##}
+{#  },#}
+{#   #}
+{##}
+{#];#}
+{#  #}
+{#  var questionCounter = 0; //Tracks question number#}
+{#  var selections = []; //Array containing user choices#}
+{#  var quiz = $('#quiz'); //Quiz div object#}
+{#  #}
+{#  // Display initial question#}
+{#  displayNext();#}
+{#  #}
+{#  // Click handler for the 'next' button#}
+{#  $('#next').on('click', function (e) {#}
+{#    e.preventDefault();#}
+{#    #}
+{#    // Suspend click listener during fade animation#}
+{#    if(quiz.is(':animated')) {        #}
+{#      return false;#}
+{#    }#}
+{#    choose();#}
+{#    #}
+{#    // If no user selection, progress is stopped#}
+{#    if (isNaN(selections[questionCounter])) {#}
+{#      alert('Please make a selection!');#}
+{#    } else {#}
+{#      questionCounter++;#}
+{#      displayNext();#}
+{#    }#}
+{#  });#}
+{#  #}
+{#  // Click handler for the 'prev' button#}
+{#  $('#prev').on('click', function (e) {#}
+{#    e.preventDefault();#}
+{#    #}
+{#    if(quiz.is(':animated')) {#}
+{#      return false;#}
+{#    }#}
+{#    choose();#}
+{#    questionCounter--;#}
+{#    displayNext();#}
+{#  });#}
+{#  #}
+{#  // Click handler for the 'Start Over' button#}
+{#  $('#start').on('click', function (e) {#}
+{#    e.preventDefault();#}
+{#    #}
+{#    if(quiz.is(':animated')) {#}
+{#      return false;#}
+{#    }#}
+{#    questionCounter = 0;#}
+{#    selections = [];#}
+{#    displayNext();#}
+{#    $('#start').hide();#}
+{#  });#}
+{#  #}
+{#  // Animates buttons on hover#}
+{#  $('.button').on('mouseenter', function () {#}
+{#    $(this).addClass('active');#}
+{#  });#}
+{#  $('.button').on('mouseleave', function () {#}
+{#    $(this).removeClass('active');#}
+{#  });#}
+{#  #}
+{#  // Creates and returns the div that contains the questions and #}
+{#  // the answer selections#}
+{#  function createQuestionElement(index) {#}
+{#    var qElement = $('<div>', {#}
+{#      id: 'question'#}
+{#    });#}
+{#    #}
+{#    var header = $('<h2>Question ' + (index + 1) + ':</h2>');#}
+{#    qElement.append(header);#}
+{#    #}
+{#    var question = $('<p>').append(questions[index].question);#}
+{#    qElement.append(question);#}
+{#    #}
+{#    var radioButtons = createRadios(index);#}
+{#    qElement.append(radioButtons);#}
+{#    #}
+{#    return qElement;#}
+{#  }#}
+{#  #}
+{#  // Creates a list of the answer choices as radio inputs#}
+{#  function createRadios(index) {#}
+{#    var radioList = $('<ul>');#}
+{#    var item;#}
+{#    var input = '';#}
+{#    for (var i = 0; i < questions[index].choices.length; i++) {#}
+{#      item = $('<li>');#}
+{#      input = '<input type="radio" name="answer" value=' + i + ' />';#}
+{#      input += questions[index].choices[i];#}
+{#      item.append(input);#}
+{#      radioList.append(item);#}
+{#    }#}
+{#    return radioList;#}
+{#  }#}
+{#  #}
+{#  // Reads the user selection and pushes the value to an array#}
+{#  function choose() {#}
+{#    selections[questionCounter] = +$('input[name="answer"]:checked').val();#}
+{#  }#}
+{#  #}
+{#  // Displays next requested element#}
+{#  function displayNext() {#}
+{#    quiz.fadeOut(function() {#}
+{#      $('#question').remove();#}
+{#      #}
+{#      if(questionCounter < questions.length){#}
+{#        var nextQuestion = createQuestionElement(questionCounter);#}
+{#        quiz.append(nextQuestion).fadeIn();#}
+{#        if (!(isNaN(selections[questionCounter]))) {#}
+{#          $('input[value='+selections[questionCounter]+']').prop('checked', true);#}
+{#        }#}
+{#        #}
+{#        // Controls display of 'prev' button#}
+{#        if(questionCounter === 1){#}
+{#          $('#prev').show();#}
+{#        } else if(questionCounter === 0){#}
+{#          #}
+{#          $('#prev').hide();#}
+{#          $('#next').show();#}
+{#        }#}
+{#      }else {#}
+{#        var scoreElem = displayScore();#}
+{#        quiz.append(scoreElem).fadeIn();#}
+{#        $('#next').hide();#}
+{#        $('#prev').hide();#}
+{#        $('#start').show();#}
+{#      }#}
+{#    });#}
+{#  }#}
+{#  #}
+{#  // Computes score and returns a paragraph element to be displayed#}
+{#  function displayScore() {#}
+{#    var score = $('<p>',{id: 'question'});#}
+{#    #}
+{#    var numCorrect = 0;#}
+{#    for (var i = 0; i < selections.length; i++) {#}
+{#      if (selections[i] === questions[i].correctAnswer) {#}
+{#        numCorrect++;#}
+{#      }#}
+{#    }#}
+{#    #}
+{#    score.append('You got ' + numCorrect + ' questions out of ' +#}
+{#                 questions.length + ' right!!!');#}
+{#    return score;#}
+{#  }#}
+{# )(); #}
+{#</script>#}
